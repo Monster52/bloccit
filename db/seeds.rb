@@ -1,4 +1,5 @@
 require 'random_data'
+Rails.logger.level = :error
 
 50.times do |i|
   Post.create!(
