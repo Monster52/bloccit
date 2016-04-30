@@ -1,44 +1,45 @@
 require 'random_data'
 Rails.logger.level = :error
 
-<<<<<<< HEAD
 15.times do
   Topic.create!(
     name: RandomData.random_sentence,
     description: RandomData.random_paragraph
   )
 end
+
 topics = Topic.all
+
+20.times do
+  SponsoredPost.create!(
+    topic_id: topics.sample.id,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph
+  )
+end
+
+sponsored_post = SponsoredPost.all
 
 50.times do
   Post.create!(
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
-=======
-50.times do |i|
-  Post.create!(
-    title: "#{i} " + RandomData.random_sentence,
-    body: "#{i} " + RandomData.random_paragraph
->>>>>>> 4b7e49933208dbe9fba68b88a489d2894458eb52
   )
 end
+
 posts = Post.all
-puts "#{Post.count} posts created"
 
-
-100.times do |i|
+100.times do
   Comment.create!(
     post: posts.sample,
-    body: "#{i} " + RandomData.random_paragraph
+    body: RandomData.random_paragraph
   )
 end
-puts "#{Comment.count} comments created"
+comments = Comment.all
 
 puts "Seed finished"
-<<<<<<< HEAD
 puts "#{Topic.count} topics created"
+puts "#{SponsoredPost.count} sponsored post created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-=======
->>>>>>> 4b7e49933208dbe9fba68b88a489d2894458eb52
