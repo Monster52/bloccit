@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.create!(name: "Bloccit User", email: "user@bloccit.com", password_digest: "password") }
+  let(:user) {User.create!(name: "bloccit user", email: "user@bloccit.com", password_digest: "password") }
 
   # Name Test
   it { should validate_presence_of(:name) }
@@ -27,12 +27,18 @@ RSpec.describe User, type: :model do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com", password_digest: "password") }
     let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "", password_digest: "password") }
 
-    it "Should be an invalid user due to blank name" do
+    it "should be an invalid user due to blank name" do
       expect(user_with_invalid_name).to_not be_valid
     end
 
-    it "Should be an invalid user do to blank email" do
+    it "should be an invalid user do to blank email" do
       expect(user_with_invalid_name).to_not be_valid
+    end
+  end
+
+  describe "fix user name to proper format" do
+    it "should return the proper fomated name" do
+      expect(user.name).to eq("Bloccit User")
     end
   end
 end
