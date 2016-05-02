@@ -1,31 +1,31 @@
 require 'random_data'
 
-15.times do
+15.times do |i|
   Topic.create!(
-    name: RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    name: "#{i}_" + RandomData.random_sentence,
+    description: "#{i}_" + RandomData.random_paragraph
   )
 end
 topics = Topic.all
+puts "#{Topic.count} topics created"
 
-50.times do
+50.times do |i|
   Post.create!(
-    topic: topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    title: "#{i}_" + RandomData.random_sentence,
+    body: "#{i}_" + RandomData.random_paragraph,
+    topic: topics.sample
   )
 end
-
 posts = Post.all
+puts "#{Post.count} posts created"
 
-100.times do
+100.times do |i|
   Comment.create!(
     post: posts.sample,
-    body: RandomData.random_paragraph
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-puts "#{Topic.count} topics created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+
