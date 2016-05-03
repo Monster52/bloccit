@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params)
+    @topic = Topic.new(topic_params) # if topic_params.present? for public
 
     if @topic.save
       flash[:notice] = "Topic was saved successfully."
@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
 
-    @topic.assign_attributes(topic_params)
+    @topic.assign_attributes(topic_params) # if topic_params.present? for public
 
     if @topic.save
       flash[:notice] = "Topic was updated successfully."
