@@ -13,7 +13,7 @@ RSpec.describe Post, type: :model do
   end
 
 
-  describe "attributes" do
+  describe "attributes" do #Documentation http://matchers.shoulda.io/docs/v3.1.1/
     it { should have_db_column(:title).of_type(:string) }
     it { should have_db_column(:body).of_type(:text) }
     it { should have_db_column(:user_id).of_type(:integer) }
@@ -23,5 +23,10 @@ RSpec.describe Post, type: :model do
     it { should have_many(:comments).dependent(:destroy) }
     it { should belong_to(:topic) }
     it { should belong_to(:user) }
+  end
+  
+  describe 'associations' do
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should belong_to(:topic) }
   end
 end

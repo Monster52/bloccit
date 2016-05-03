@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :require_sign_in
+  before_action :authorize_user, only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])

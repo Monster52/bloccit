@@ -15,8 +15,8 @@ RSpec.describe Topic, type: :model do
       expect(topic.public).to eq(true)
     end
   end
-
-  describe "associations" do
+  
+  describe 'associations' do
     it { should have_many(:posts).dependent(:destroy) }
   end
 end

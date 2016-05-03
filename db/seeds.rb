@@ -1,61 +1,61 @@
 require 'random_data'
-Rails.logger.level = :error
 
 # Create Users
-5.times do
+5.times do |i|
   User.create!(
-    name: RandomData.random_name,
+    name: "#{i}_" + RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_sentence
   )
 end
+
+# Create Admin User
+unless User.find_by(email: 'admin@example.com')
+  User.create!(
+    name: 'admin example',
+    email: 'admin@example.com',
+    password: 'password',
+    role: 'admin'
+  )
+end
+
 users = User.all
+puts "#{User.count} users created"
+
 
 # Create Topics
-15.times do
+15.times do |i|
   Topic.create!(
-    name: RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    name: "#{i}_" + RandomData.random_sentence,
+    description: "#{i}_" + RandomData.random_paragraph,
+    public: rand(1..4) != 1
   )
 end
 topics = Topic.all
+puts "#{Topic.count} topics created"
+puts "#{Topic.where(public: false).count} private topics created"
 
 # Create Posts
-50.times do
+50.times do |i|
   Post.create!(
+    title: "#{i}_" + RandomData.random_sentence,
+    body: "#{i}_" + RandomData.random_paragraph,
     user: users.sample,
-    topic: topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    topic: topics.sample
   )
 end
 posts = Post.all
+puts "#{Post.count} posts created"
 
 # Create Comments
 100.times do |i|
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: "#{i} " + RandomData.random_paragraph
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
-
-admin = User.create!(
-  name: "Ross Waguespack",
-  email: "ross@bloc.com",
-  password: "password",
-  role: "admin"
-)
-
-member = User.create!(
-  name: "Cindy Waguespack",
-  email: "cindy@gmail.com",
-  password: "password"
-)
-
+comments = Comment.all
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Topic.count} topics created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
