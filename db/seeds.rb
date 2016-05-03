@@ -3,11 +3,13 @@ require 'random_data'
 15.times do |i|
   Topic.create!(
     name: "#{i}_" + RandomData.random_sentence,
-    description: "#{i}_" + RandomData.random_paragraph
+    description: "#{i}_" + RandomData.random_paragraph,
+    public: rand(1..4) != 1
   )
 end
 topics = Topic.all
 puts "#{Topic.count} topics created"
+puts "#{Topic.where(public: false).count} private topics created"
 
 50.times do |i|
   Post.create!(
