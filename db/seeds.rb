@@ -12,14 +12,14 @@ topics = Topic.all
 puts "#{Topic.count} topics created"
 puts "#{Topic.where(public: false).count} private topics created"
 
-20.times do
+20.times do |i|
   SponsoredPost.create!(
     topic_id: topics.sample.id,
     title: "#{i}_" + RandomData.random_sentence,
     body: "#{i}_" + RandomData.random_paragraph
   )
 end
-puts "#{SponsoredPost.count} sponsored post created"
+puts "#{SponsoredPost.count} sponsored posts created"
 
 50.times do |i|
   Post.create!(
@@ -28,7 +28,8 @@ puts "#{SponsoredPost.count} sponsored post created"
     topic: topics.sample
   )
 end
-puts "#{Post.count} sponsored post created"
+posts = Post.all
+puts "#{Post.count} posts created"
 
 100.times do |i|
   Comment.create!(
@@ -36,7 +37,7 @@ puts "#{Post.count} sponsored post created"
     body: "#{i}_" + RandomData.random_paragraph
   )
 end
-puts "#{Comment.count} sponsored post created"
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
 
