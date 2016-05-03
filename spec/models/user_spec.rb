@@ -21,9 +21,54 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:password_digest).is_at_least(6) }
 
   # Attributes
-  it { should have_db_column(:name).of_type(:string) }
-  it { should have_db_column(:email).of_type(:string) }
-  it { should have_db_column(:password_digest).of_type(:string) }
+  
+  describe "attributes" do
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:email).of_type(:string) }
+    it { should have_db_column(:password_digest).of_type(:string) }
+
+    it "responds to role" do
+      expect(user).to respond_to(:role)
+    end
+
+    it "responds to admin" do
+      expect(user).to respond_to(:admin?)
+    end
+
+    it "responds to member" do
+      expect(user).to respond_to(:member?)
+    end
+  end
+
+  describe "roles" do
+    it "is a member by default" do
+      expect(user.role).to eq("member")
+    end
+
+    context "member user" do
+      it "returns true for #member" do
+        expect(user.member?).to be_truthy
+      end
+
+      it "returns false for @admin" do
+        expect(user.admin?).to be_falsey
+      end
+    end
+
+    context "admin user" do
+      before do
+        user.admin!
+      end
+
+      it "returns true for #admin" do
+        expect(user.admin?).to be_truthy
+      end
+
+      it "returns false for #member" do
+        expect(user.member?).to be_falsey
+      end
+    end
+  end
 
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com", password_digest: "password") }

@@ -36,13 +36,20 @@ posts = Post.all
     body: "#{i} " + RandomData.random_paragraph
   )
 end
-puts "#{Comment.count} comments created"
 
-user = User.first
-user.update_attributes!(
-  email: 'rosswaguespack@gmail.com',
-  password: 'password'
+admin = User.create!(
+  name: "Ross Waguespack",
+  email: "ross@bloc.com",
+  password: "password",
+  role: "admin"
 )
+
+member = User.create!(
+  name: "Cindy Waguespack",
+  email: "cindy@gmail.com",
+  password: "password"
+)
+
 
 puts "Seed finished"
 puts "#{User.count} users created"
