@@ -58,7 +58,5 @@ puts "#{Post.count} posts created"
     body: "#{i}_" + RandomData.random_paragraph
   )
 end
-puts "#{Comment.count} comments created"
-
 
 puts "Seed finished"
