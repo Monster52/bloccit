@@ -18,5 +18,7 @@ RSpec.describe Topic, type: :model do
   
   describe 'associations' do
     it { should have_many(:posts).dependent(:destroy) }
+    it { should have_many(:labelings) }
+    it { should have_many(:labels).through(:labelings) }
   end
 end

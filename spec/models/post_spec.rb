@@ -21,12 +21,9 @@ RSpec.describe Post, type: :model do
 
   describe "associations" do
     it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:labelings) }
+    it { should have_many(:labels).through(:labelings) }
     it { should belong_to(:topic) }
     it { should belong_to(:user) }
-  end
-  
-  describe 'associations' do
-    it { should have_many(:comments).dependent(:destroy) }
-    it { should belong_to(:topic) }
   end
 end

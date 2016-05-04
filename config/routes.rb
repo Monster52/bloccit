@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  
+
   get 'about', to: 'welcome#about'
-  
+
   resources :topics do
     resources :posts, except: [:index]
   end
@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :labels, only: [:show]
 
 end
