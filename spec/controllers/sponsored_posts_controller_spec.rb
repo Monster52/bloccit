@@ -41,16 +41,16 @@ RSpec.describe SponsoredPostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Sponsored Post by 1" do
-      expect{sponsored :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}}.to change(SponsoredPost,:count).by(1)
+      expect{post :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}}.to change(SponsoredPost,:count).by(1)
     end
 
     it "assigns the new sponsored post to @sponsored_post" do
-      sponsored :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}
+      post :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}
       expect(assigns(:sponsored_post)).to eq SponsoredPost.last
     end
 
     it "redirects to the new sponsored post" do
-      sponsored :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}
+      post :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: 19}
       expect(response).to redirect_to [my_topic, SponsoredPost.last]
     end
   end
@@ -93,14 +93,14 @@ RSpec.describe SponsoredPostsController, type: :controller do
       expect(update_post.price).to eq new_price
     end
 
-    it "redirects to the udated sponsored post" do
+    it "redirects to the updated sponsored post" do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
       new_price = 21
 
       put :update, topic_id: my_topic.id, id: sponsored.id, sponsored_post: {title: new_title, body: new_body, price: new_price}
 
-      expect(response).to redirect_to [my_topic, my_post]
+      expect(response).to redirect_to [my_topic, sponsored]
     end
   end
 
@@ -114,7 +114,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
 
     it "redirects to topic show" do
       delete :destroy, topic_id: my_topic.id, id: sponsored.id
-      expect(response).to redirect_to my_topic_id 
+      expect(response).to redirect_to my_topic
     end
   end
 end
