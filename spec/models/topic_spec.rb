@@ -6,7 +6,6 @@ RSpec.describe Topic, type: :model do
   let(:public) { true }
   let(:topic) { Topic.create!(name: name, description: description) }
 
-  it { should have_many(:posts) }
 
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
@@ -16,5 +15,9 @@ RSpec.describe Topic, type: :model do
     it "is public by defalut" do
       expect(topic.public).to eq(true)
     end
+  end
+  
+  describe 'associations' do
+    it { should have_many(:posts).dependent(:destroy) }
   end
 end
