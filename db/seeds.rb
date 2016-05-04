@@ -1,45 +1,42 @@
 require 'random_data'
-Rails.logger.level = :error
 
-15.times do
+15.times do |i|
   Topic.create!(
-    name: RandomData.random_sentence,
-    description: RandomData.random_paragraph
+    name: "#{i}_" + RandomData.random_sentence,
+    description: "#{i}_" + RandomData.random_paragraph,
+    public: rand(1..4) != 1
   )
 end
 
 topics = Topic.all
+puts "#{Topic.count} topics created"
+puts "#{Topic.where(public: false).count} private topics created"
 
 20.times do
   SponsoredPost.create!(
     topic_id: topics.sample.id,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    title: "#{i}_" + RandomData.random_sentence,
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
+puts "#{SponsoredPost.count} sponsored post created"
 
-sponsored_post = SponsoredPost.all
-
-50.times do
+50.times do |i|
   Post.create!(
-    topic: topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    title: "#{i}_" + RandomData.random_sentence,
+    body: "#{i}_" + RandomData.random_paragraph,
+    topic: topics.sample
   )
 end
+puts "#{Post.count} sponsored post created"
 
-posts = Post.all
-
-100.times do
+100.times do |i|
   Comment.create!(
     post: posts.sample,
-    body: RandomData.random_paragraph
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
-comments = Comment.all
+puts "#{Comment.count} sponsored post created"
 
 puts "Seed finished"
-puts "#{Topic.count} topics created"
-puts "#{SponsoredPost.count} sponsored post created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+
