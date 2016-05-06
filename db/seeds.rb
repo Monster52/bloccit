@@ -48,14 +48,13 @@ posts = Post.all
 puts "#{Post.count} posts created"
 
 # Create Comments
-100.times do |i|
-  Comment.create!(
-    user: users.sample,
-    post: posts.sample,
-    body: "#{i}_" + RandomData.random_paragraph
-  )
-end
-comments = Comment.all
-puts "#{Comment.count} comments created"
+#100.times do |i|
+#  Comment.create!(
+#    user: users.sample,
+#    body: "#{i}_" + RandomData.random_paragraph
+#  )
+#end
+#comments = Comment.all
+#puts "#{Comment.count} comments created"
 
 puts "Seed finished"

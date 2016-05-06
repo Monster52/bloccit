@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :posts, except: [:index]
+    resources :comments, module: :topics
   end
 
-  resources :posts, only: [] do
-    resources :comments, only: [:create, :destroy]
+  resources :posts, except: [] do
+    resources :comments, module: :posts
   end
 
   resources :users, only: [:new, :create]
