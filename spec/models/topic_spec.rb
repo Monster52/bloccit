@@ -6,7 +6,6 @@ RSpec.describe Topic, type: :model do
   let(:public) { true }
   let(:topic) { Topic.create!(name: name, description: description) }
 
-  it { should have_many(:posts) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
@@ -23,5 +22,9 @@ RSpec.describe Topic, type: :model do
     it "is public by defalut" do
       expect(topic.public).to eq(true)
     end
+  end
+  
+  describe 'associations' do
+    it { should have_many(:posts).dependent(:destroy) }
   end
 end
