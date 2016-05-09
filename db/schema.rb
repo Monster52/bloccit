@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160509144013) do
     t.integer  "user_id"
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.integer  "post_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
@@ -54,8 +55,6 @@ ActiveRecord::Schema.define(version: 20160509144013) do
 
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
-
-
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
