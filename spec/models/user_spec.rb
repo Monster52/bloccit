@@ -1,19 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
-  describe 'attributes' do
-    it { should have_db_column(:name).of_type(:string) }
-    it { should have_db_column(:email).of_type(:string) }
-    it { should have_db_column(:password_digest).of_type(:string) }
-  end
-  
-  describe 'associations' do
-    it { should have_many(:posts) }
-  end
+  let(:user) { User.create!(name:"Bloccit User", email: "user@bloccit.com", password_digest: "password") }
 
   # Attributes
-  
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
@@ -60,6 +50,11 @@ RSpec.describe User, type: :model do
         expect(user.member?).to be_falsey
       end
     end
+  end
+
+  describe 'associations' do
+    it { should have_many(:posts) }
+    it { should have_many(:votes) }
   end
   
   describe 'validation' do
