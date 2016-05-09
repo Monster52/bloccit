@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20160509144013) do
     t.text     "body"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "post_id"
     t.integer  "user_id"
     t.string   "commentable_type"
     t.integer  "commentable_id"
-    t.integer  "post_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
