@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160502183950) do
     t.integer  "post_id"
   end
 
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "labelings", force: :cascade do |t|
