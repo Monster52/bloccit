@@ -14,14 +14,13 @@ unless User.find_by(email: 'admin@example.com')
   User.create!(
     name: 'admin example',
     email: 'admin@example.com',
-    password: 'password',
+    password: 'helloworld',
     role: 'admin'
   )
 end
 
 users = User.all
 puts "#{User.count} users created"
-
 
 # Create Topics
 15.times do |i|
@@ -59,7 +58,9 @@ puts "#{Vote.count} votes created"
     body: "#{i}_" + RandomData.random_paragraph
   )
 end
-comments = Comment.all
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
+
+
+
