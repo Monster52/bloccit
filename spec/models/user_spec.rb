@@ -31,6 +31,10 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:password_digest) }
     it { should have_secure_password}
     it { should validate_length_of(:password_digest).is_at_least(6) }
+    
+    # Role
+    it { should validate_presence_of(:role) }
+    it { should validate_presence_of(:role) }
   end
 
 end
