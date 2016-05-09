@@ -34,7 +34,6 @@ RSpec.describe User, type: :model do
     
     # Role
     it { should validate_presence_of(:role) }
-    it { should validate_presence_of(:role) }
   end
 
 end
