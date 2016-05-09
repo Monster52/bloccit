@@ -1,6 +1,11 @@
 class ChangeRoleOnUsers < ActiveRecord::Migration
-  def change
+  def up
+    change_column_default :users, :role, 0
     change_column_null :users, :role, false
-    change_column_default :users, :role, from: nil, to: 0
+  end
+  
+  def down
+    change_column_default :users, :role, nil
+    change_column_null :users, :role, true
   end
 end
