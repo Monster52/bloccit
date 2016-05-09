@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.create!(name: "Bloccit User", email: "user@bloccit.com", password_digest: "password") }
+  let(:user) {User.create!(name::"Bloccit User", email: "user@bloccit.com", password_digest: "password") }
 
   it { should have_many(:posts) }
+  it { should have_many(:votes) }
 
   # Name Test
   it { should validate_presence_of(:name) }
@@ -21,7 +22,6 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:password_digest).is_at_least(6) }
 
   # Attributes
-  
   describe "attributes" do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:email).of_type(:string) }
