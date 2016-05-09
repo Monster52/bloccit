@@ -9,7 +9,49 @@ require 'random_data'
     password: RandomData.random_sentence
   )
 end
+
+unless User.find_by(email: "ross@bloc.com")
+  admin = User.create!(
+    name: "Ross Waguespack",
+    email: "ross@bloc.com",
+    password: "password",
+    role: "admin"
+  )
+  puts "created static Admin User."
+  puts "Email: #{admin.email} Password: #{admin.password}"
+else
+  puts "Skipped creation of \"ross@bloc.com\""
+end
+
+unless User.find_by(email: "admin@example.com")
+  admin = User.create!(
+    name: "Ross Waguespack",
+    email: "admin@example.com",
+    password: "helloworld",
+    role: "admin"
+  )
+  puts "created static Admin User."
+  puts "Email: #{admin.email} Password: #{admin.password}"
+else
+  puts "Skipped creation of \"admin@example.com\""
+end
+
+unless User.find_by(email: "cindy@gmail.com")
+  member = User.create!(
+    name: "Cindy Waguespack",
+    email: "cindy@gmail.com",
+    password: "password"
+  )
+  puts "created static Member User."
+  puts "Email: #{member.email} Password: #{member.password}"
+else
+  puts "Skipped creation of \"cindy@gmail.com\""
+end
+
+
 users = User.all
+puts "#{User.count} users created."
+
 
 15.times do |i|
   Topic.create!(
@@ -40,18 +82,7 @@ puts "#{Post.count} posts created"
   )
 end
 
-admin = User.create!(
-  name: "Ross Waguespack",
-  email: "ross@bloc.com",
-  password: "password",
-  role: "admin"
-)
 
-member = User.create!(
-  name: "Cindy Waguespack",
-  email: "cindy@gmail.com",
-  password: "password"
-)
 
 
 puts "Seed finished"
