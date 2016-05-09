@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params) # if topic_params.present? for public
+    @topic = Topic.new(topic_params)
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])
@@ -35,7 +35,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
 
-    @topic.assign_attributes(topic_params) # if topic_params.present? for public
+    @topic.assign_attributes(topic_params)
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])

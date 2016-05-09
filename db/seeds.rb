@@ -1,6 +1,7 @@
 require 'random_data'
 
 # Create Users
+
 5.times do |i|
   User.create!(
     name: "#{i}_" + RandomData.random_name,
@@ -57,6 +58,4 @@ end
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-
-
 
