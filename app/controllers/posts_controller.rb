@@ -73,6 +73,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     unless current_user == post.user || current_user.admin?
       flash[:alert] = "Moderators are not allowed this action."
+      redirect_to [post.topic, post]
     end
   end
 end
