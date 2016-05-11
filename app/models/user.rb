@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  enum role: [:member, :admin]
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
@@ -15,8 +17,10 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false },
             length: { minimum: 3, maximum: 254 }
+            
+  validates :role, presence: true,
+            inclusion: { in: roles.keys }
 
   has_secure_password
 
-  enum role: [:member, :admin]
 end
