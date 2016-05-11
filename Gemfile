@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'bcrypt'
+gem 'figaro', '1.0'
 
 #Database for development and testing
 group :development, :test do
