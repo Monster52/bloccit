@@ -67,7 +67,6 @@ puts "#{Topic.where(public: false).count} private topics created"
 # Create Posts
 50.times do |i|
   Post.create!(
-    user: users.sample,
     title: "#{i}_" + RandomData.random_sentence,
     body: "#{i}_" + RandomData.random_paragraph,
     user: users.sample,
@@ -78,13 +77,13 @@ posts = Post.all
 puts "#{Post.count} posts created"
 
 # Create Comments
-#100.times do |i|
-#  Comment.create!(
-#    user: users.sample,
-#    body: "#{i}_" + RandomData.random_paragraph
-#  )
-#end
-#comments = Comment.all
-#puts "#{Comment.count} comments created"
+100.times do |i|
+  Comment.create!(
+    user: users.sample,
+    body: "#{i}_" + RandomData.random_paragraph,
+    commentable: rand(1..4) == 1 ? topics.sample : posts.sample
+  )
+end
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
