@@ -1,26 +1,12 @@
 require 'random_data'
 
 # Create Users
-
 5.times do |i|
   User.create!(
     name: "#{i}_" + RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_sentence
   )
-end
-
-unless User.find_by(email: "ross@bloc.com")
-  admin = User.create!(
-    name: "Ross Waguespack",
-    email: "ross@bloc.com",
-    password: "password",
-    role: "admin"
-  )
-  puts "created static Admin User."
-  puts "Email: #{admin.email} Password: #{admin.password}"
-else
-  puts "Skipped creation of \"ross@bloc.com\""
 end
 
 unless User.find_by(email: "admin@example.com")
@@ -35,19 +21,6 @@ unless User.find_by(email: "admin@example.com")
 else
   puts "Skipped creation of \"admin@example.com\""
 end
-
-unless User.find_by(email: "cindy@gmail.com")
-  member = User.create!(
-    name: "Cindy Waguespack",
-    email: "cindy@gmail.com",
-    password: "password"
-  )
-  puts "created static Member User."
-  puts "Email: #{member.email} Password: #{member.password}"
-else
-  puts "Skipped creation of \"cindy@gmail.com\""
-end
-
 
 users = User.all
 puts "#{User.count} users created."
