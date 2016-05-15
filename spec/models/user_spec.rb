@@ -12,7 +12,9 @@ RSpec.describe User, type: :model do
   end
   
   describe 'associations' do
-    it { should have_many(:posts) }
+    it { should have_many(:posts).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:votes).dependent(:destroy) }
   end
   
   describe 'validation' do
