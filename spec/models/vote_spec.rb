@@ -5,7 +5,8 @@ RSpec.describe Vote, type: :model do
   let(:topic) { create(:topic) }
   let(:user) { create(:user) }
   let(:post) { create(:post) }
-  let(:vote) { Vote.create!(value: 1, post: post, user: user) }
+  #let(:vote) { Vote.create!(value: 1, post: post, user: user) } The Factory vote is raising an error
+  let(:vote) { create(:vote) }
 
   describe "validations" do
     it { should validate_presence_of(:value) }
