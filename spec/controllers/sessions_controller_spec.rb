@@ -55,7 +55,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "flashes #notice" do
-      delete :destory, id: my_user.id
+      delete :destroy, id: my_user.id
       expect(flash[:notice]).to be_present
     end
   end
