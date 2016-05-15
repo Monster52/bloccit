@@ -10,13 +10,14 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'figaro', '1.0'
+gem 'factory_girl_rails', '~> 4.0'
 
 #Database for development and testing
 group :development, :test do
   gem 'sqlite3'
 end
 
-#Database and assets when in production 
+#Database and assets when in production
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -26,4 +27,3 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda-matchers', '~> 3.1'
 end
-
