@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 20160510184404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "post_id"
   end
 
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "favorites", force: :cascade do |t|
@@ -76,9 +74,9 @@ ActiveRecord::Schema.define(version: 20160510184404) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "role"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "role",            default: 0, null: false
   end
 
   create_table "votes", force: :cascade do |t|
