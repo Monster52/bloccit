@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-md-2">
     <p>
-      <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success pull-left' %>
+      <%= button_to "Yes", users_path(params), method: :post, class: 'btn btn-success pull-left' %>
       <%= link_to "No", new_user_path, class: 'btn btn-danger pull-right' %>
     </p>
   </div>
