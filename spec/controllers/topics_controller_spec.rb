@@ -270,7 +270,7 @@ RSpec.describe TopicsController, type: :controller do
 
   context "moderator user" do
      before do
-       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :moderator)
+       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: 'moderator')
        create_session(user)
      end
 
@@ -325,12 +325,9 @@ RSpec.describe TopicsController, type: :controller do
      end
 
      describe "PUT update" do
-       it "returns http success" do
-         new_name = RandomData.random_sentence
-         new_description = RandomData.random_paragraph
-
-         put :update, id: my_topic.id, topic: {name: new_name, description: new_description}
-         expect(response).to have_http_status(:success) 
+       it "redirects to topics" do
+         put :update, id: my_topic.id, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+         expect(response).to redirect_to(topic_path(my_topic)) 
        end
      end
 
