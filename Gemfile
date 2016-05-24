@@ -12,6 +12,10 @@ gem 'bcrypt'
 gem 'figaro', '1.0'
 gem 'factory_girl_rails', '~> 4.0'
 
+
+#Codeclimate test coverage
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 #Database for development and testing
 group :development, :test do
   gem 'sqlite3'

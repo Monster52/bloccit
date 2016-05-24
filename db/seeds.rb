@@ -92,4 +92,3 @@ end
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-
