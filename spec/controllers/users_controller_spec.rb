@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  let(:new_user_attributes) { create(:user) }
+  let(:new_user_attributes) { attributes_for(:user) }
 
   describe "GET new" do
     it "returns http success" do
